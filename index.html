@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b46">
+<meta name="description" content="Consulte os fretes disponíveis da CargoModal e entre em contato com nossa equipe.">
+<title>CargoModal | Portal de Fretes</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="CargoModal início"><span class="brand-mark">CM</span><span><b>CARGOMODAL</b><small>PORTAL DE FRETES</small></span></a>
+  <nav><a href="#fretes">Fretes disponíveis</a><a href="#sobre">Como funciona</a><button class="btn btn-outline" id="admin-open">Área da equipe</button></nav>
+</header>
+<main>
+<section class="hero">
+ <div class="hero-copy"><span class="eyebrow">LOGÍSTICA • CONEXÕES • OPORTUNIDADES</span><h1>Seu próximo frete<br><em>começa aqui.</em></h1><p>Confira as oportunidades de transporte divulgadas pela CargoModal e fale diretamente com nossa equipe.</p><a class="btn btn-primary" href="#fretes">Consultar fretes <span>→</span></a><div class="hero-proof"><span>✓ Consulta gratuita</span><span>✓ Contato direto</span><span>✓ Atualização de cargas</span></div></div>
+ <div class="hero-art"><div class="sun"></div><div class="road"></div><div class="truck-illustration"><div class="trailer"></div><div class="cab"><div class="window"></div></div><i class="wheel w1"></i><i class="wheel w2"></i><i class="wheel w3"></i></div><div class="route-tag"><span class="route-dot"></span><div><small>OPORTUNIDADES DE FRETE</small><b>Conectando rotas pelo Brasil</b></div></div></div>
+</section>
+<section class="search-section" id="fretes"><div class="section-heading"><div><span class="eyebrow">PAINEL DE OPORTUNIDADES</span><h2>Fretes disponíveis</h2><p>Filtre as cargas e encontre uma rota que faça sentido para você.</p></div><span class="live-pill"><i></i> Cargas publicadas</span></div>
+ <form class="filters" id="filters"><label>Origem<input name="origin" placeholder="Cidade ou UF"></label><label>Destino<input name="destination" placeholder="Cidade ou UF"></label><label>Tipo de veículo<select name="vehicle"><option value="">Todos os veículos</option><option>Truck</option><option>Toco</option><option>Carreta</option><option>Bitrem</option><option>Rodotrem</option><option>VUC</option><option>Van</option><option>Outro</option></select></label><label>Peso mínimo (t)<input name="minWeight" type="number" min="0" step="0.1" placeholder="Ex.: 5"></label><label>Peso máximo (t)<input name="maxWeight" type="number" min="0" step="0.1" placeholder="Ex.: 30"></label><button class="btn btn-primary filter-button">Buscar fretes</button><button class="clear-button" type="reset">Limpar filtros</button></form>
+ <div class="results-bar"><span id="result-count">Carregando cargas…</span><button class="text-button" id="refresh">↻ Atualizar lista</button></div><div id="freight-list" class="freight-grid" aria-live="polite"></div>
+</section>
+<section class="how-section" id="sobre"><div class="how-intro"><span class="eyebrow">SIMPLES E DIRETO</span><h2>Da busca ao contato,<br>sem complicação.</h2><p>A CargoModal aproxima as oportunidades de transporte dos profissionais que movimentam o Brasil.</p></div><div class="steps"><article><span>01</span><h3>Encontre uma carga</h3><p>Use os filtros para buscar por origem, destino, veículo e peso.</p></article><article><span>02</span><h3>Confira os detalhes</h3><p>Veja as informações divulgadas e confirme as condições com a equipe.</p></article><article><span>03</span><h3>Fale com a CargoModal</h3><p>Inicie uma conversa pelo WhatsApp para negociar o frete.</p></article></div></section>
+</main>
+<footer><a class="brand brand-footer" href="/"><span class="brand-mark">CM</span><span><b>CARGOMODAL</b><small>PORTAL DE FRETES</small></span></a><p>Conectando cargas, rotas e oportunidades.</p><span>© <span id="year"></span> CargoModal</span></footer>
+<div class="modal-backdrop hidden" id="login-modal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title"><button class="modal-x" data-close aria-label="Fechar">×</button><span class="eyebrow">ACESSO RESTRITO</span><h2 id="login-title">Área da equipe</h2><p>Entre com seu usuário e senha para administrar os fretes.</p><form id="login-form"><label>Usuário<input name="username" autocomplete="username" required></label><label>Senha<input name="password" type="password" autocomplete="current-password" required></label><p class="form-error" id="login-error"></p><button class="btn btn-primary full">Entrar no painel</button></form></section></div>
+<div class="admin-view hidden" id="admin-view"><header class="admin-header"><a class="brand" href="/"><span class="brand-mark">CM</span><span><b>CARGOMODAL</b><small>PAINEL ADMINISTRATIVO</small></span></a><div><span id="admin-user"></span><button class="btn btn-outline" id="logout">Sair</button></div></header><main class="admin-main"><div class="admin-title"><div><span class="eyebrow">GESTÃO DE OPORTUNIDADES</span><h1>Gerenciar fretes</h1><p>Cadastre novas cargas e controle o que aparece no site público.</p></div><button class="btn btn-primary" id="new-freight">＋ Novo frete</button></div><div id="admin-message" class="notice hidden"></div><section class="admin-form-card hidden" id="freight-editor"><div class="editor-head"><h2 id="editor-title">Cadastrar frete</h2><button class="modal-x" id="cancel-editor" aria-label="Fechar">×</button></div><form id="freight-form" class="editor-grid">
+<input type="hidden" name="id"><label class="wide">Título da carga<input name="title" required maxlength="120" placeholder="Ex.: Carga paletizada para entrega"></label>
+<label>Cidade de origem<input name="origin_city" required></label><label>UF de origem<input name="origin_state" required maxlength="2" placeholder="SP"></label>
+<label>Cidade de destino<input name="destination_city" required></label><label>UF de destino<input name="destination_state" required maxlength="2" placeholder="PR"></label>
+<label>Peso (toneladas)<input name="weight_tons" type="number" min="0.1" step="0.1" placeholder="Ex.: 14"></label>
+<label>Tipo de veículo<select name="vehicle_type" required><option value="">Selecione</option><option>Truck</option><option>Toco</option><option>Carreta</option><option>Bitrem</option><option>Rodotrem</option><option>VUC</option><option>Van</option><option>Outro</option></select></label>
+<label>Material / produto<input name="material" placeholder="Ex.: Sementes, paletizados"></label><label>Data de carregamento<input name="loading_date" type="date"></label>
+<label>Status<select name="status"><option value="published">Publicado</option><option value="paused">Pausado</option><option value="closed">Encerrado</option></select></label>
+<label class="wide">Observações<textarea name="notes" rows="3" placeholder="Instruções e informações autorizadas para divulgação"></textarea></label>
+<div class="wide editor-actions"><button type="button" class="btn btn-outline" id="cancel-editor-bottom">Cancelar</button><button class="btn btn-primary">Salvar frete</button></div><p class="form-error wide" id="editor-error"></p>
+</form></section><section class="admin-list"><div class="list-heading"><h2>Fretes cadastrados</h2><span id="admin-count"></span></div><div id="admin-freights"></div></section></main></div>
+<script src="/app.js"></script>
+</body></html>
